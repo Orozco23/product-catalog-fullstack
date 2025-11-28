@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for product catalog",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Orozco23/product-catalog-fullstack.git"
+  },
+  "keywords": [
+    "product",
+    "catalog"
+  ],
+  "author": "Orozco23",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Orozco23/product-catalog-fullstack/issues"
+  },
+  "homepage": "https://github.com/Orozco23/product-catalog-fullstack#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
