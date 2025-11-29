@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Orozco23/product-catalog-fullstack#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "express": "^5.1.0",
     "morgan": "^1.10.1",
     "mysql2": "^3.15.3"
