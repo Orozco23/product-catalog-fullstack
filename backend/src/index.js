@@ -4,6 +4,8 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import userRoutes from './routes/user.routes.js';
+import productsRoutes from './routes/product.routes.js';
+import { upload } from './config/multer.js';
 
 //Inicialization
 const app = express();
@@ -22,8 +24,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.json({"message":"Welcome to the Product Catalog Backend!"});
 });
-
+ 
 app.use(userRoutes);
+app.use(productsRoutes);
 
 //Starting the server
 app.listen(app.get('port'), () => {
