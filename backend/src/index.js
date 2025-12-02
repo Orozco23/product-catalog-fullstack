@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -17,8 +18,12 @@ app.set('routes', join(__dirname, 'routes'));
 
 //Middlewares
 app.use(morgan('dev'));
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+//Static files
+app.use('/api/images', express.static(join(__dirname, 'uploads')));
 
 //Routes
 app.get('/', (req, res) => {
