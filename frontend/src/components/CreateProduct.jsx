@@ -1,29 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { softDeleted, updateProduct } from "../fetch/Product.fetch";
+import { createProduct } from "../fetch/Product.fetch";
+import { useEffect } from "react";
 
-export default function UpdateProduct() {
+export default function CreateProduct() {
     const navigate = useNavigate();
-    const product = JSON.parse(localStorage.getItem('product'));
     const Cancelar = () => {
         navigate('/catalog');
     }
-
-    const preview0 = "https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-02.jpg";
-    const renderImage = (img) => {
-        if (!img) return null;
-        const filename = img.split(/[/\\]/).pop();
-        return `http://localhost:3000/api/images/${filename}`;
-    }
     
-    const [name, setName] = useState(product.name);
-    const [description, setDescription] = useState(product.description);
-    const [price, setPrice] = useState(product.price);
-    const [inventory, setInventory] = useState(product.inventory);
-    const [image, setImage] = useState(renderImage(product.image) || preview0);
+    const [sku, setSku] = useState('');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [inventory, setInventory] = useState('');
+    const [image, setImage] = useState(null);
 
-    const [preview, setPreview] = useState(renderImage(product.image) || preview0);
+    const [preview, setPreview] = useState(null);
 
+    const changeSku = (e) => setSku(e.target.value);
     const changeName = (e) => setName(e.target.value);
     const changeDescription = (e) => setDescription(e.target.value);
     const changePrice = (e) => setPrice(e.target.value);
@@ -37,18 +32,9 @@ export default function UpdateProduct() {
         setPreview(url);
     };
 
-    const deleteProduct = async () => {
-        try{
-            const response = await softDeleted(product.sku);
-            navigate('/catalog');
-        }catch(error){
-            console.error("Error deleting product:", error);
-        }
-    }
-
     const saveProduct = async () => {
         try{
-            const response = await updateProduct(product.sku, name, description, price, inventory, image);
+            const response = await createProduct(sku, name, description, price, inventory, image);
             navigate('/catalog');
         }catch(error){
             console.error("Error deleting product:", error);
@@ -65,7 +51,7 @@ export default function UpdateProduct() {
 
     return (
         <div className="max-w-6xl mx-auto p-6 rounded shadow-2xl  text-black">
-        <h1 className="text-2xl font-bold mb-4">Editar Producto</h1>
+        <h1 className="text-2xl font-bold mb-4">Crear Producto</h1>
 
         <div className="space-y-4">
             
@@ -73,8 +59,8 @@ export default function UpdateProduct() {
             <label className="block font-medium">SKU</label>
             <input
                 type="text"
-                value={product.sku}
-                readOnly
+                value={sku}
+                onChange={changeSku}
                 className="w-full px-3 py-2 border bg-gray-100 rounded"
             />
             </div>
@@ -142,18 +128,6 @@ export default function UpdateProduct() {
             </div>
 
             <div className="flex justify-between mt-6">
-            <button
-                type="button"
-                disabled={localStorage.getItem('type') !== '1'}
-                className={`bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700
-                ${localStorage.getItem('type') !== '1' 
-                ? "bg-gray-400 cursor-not-allowed" 
-                : "bg-blue-500 hover:bg-blue-700"
-                }`}
-                onClick={deleteProduct}
-            >
-                Eliminar
-            </button>
             <button
                 type="submit"
                 className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700"
