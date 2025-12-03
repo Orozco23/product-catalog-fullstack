@@ -1,16 +1,93 @@
-# React + Vite
+## <center>CEMACO</center>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+It's an application similar to www.cemaco.com, where products are displayed to customers, while administrators and collaborators, in addition to displaying products, can create, delete, and update them.
 
-Currently, two official plugins are available:
+--- 
+### Summary
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* [**TECHNOLOGIES**](#technologies) 
+    > Defines the technologies used
 
-## React Compiler
+* [**RUN APP**](#run-app)
+    > Define how to run
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+* [**FILE STRUCTURE**](#file-structure)
+    > Define the structure
 
-## Expanding the ESLint configuration
+* [**ENDPOINTS**](#endpoints)
+    > Define the endpoints
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+<a id="technologies"></a> 
+
+### **TECHNOLOGIES**
+
+* **Vite**
+
+    * This project was created with vite, with the command:
+
+        ```
+        npm create vite@latest
+        
+        
+<br>
+
+* **tailwind:** to style components
+
+* **react-router-dom:** to manage the routes
+
+    ```jsx
+        import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<LogIn />}/>
+                <Route path='/catalog' element={<Catalog />}/>
+                <Route path='/product' element={<UpdateProduct />}/>
+                <Route path='/create-product' element={<CreateProduct />}/>
+            </Routes>
+        </BrowserRouter>
+
+<br>
+
+
+<a id="Run app"></a>
+### Run app
+
+* install the dependencies
+
+    ```
+    npm install
+
+* run
+
+    ```
+    npm run dev
+    
+
+<br>
+
+<a id="file-structure"></a>
+### File structure
+
+* All the code is inside the src folder
+* inside we find the following folders
+    * assets: for images
+    * components: all reusable components
+    * fetch: the requests as a function so that they can be reused
+    * pages: with the components the pages were assembled
+    * routes: contains the routing file
+* and the files
+    * App.css
+    * App.jsx
+    * index.js
+    * main.jsx
+* the styles were created with tailwind
+
+<br>
+
+<a id="endpoints"></a>
+### **ENDPOINTS**
+
+* For more information, please consult [product catolog postman collection](https://github.com/Orozco23/product-catalog-fullstack/blob/main/backend/product-catalog.postman_collection.json) and [readme](https://github.com/Orozco23/product-catalog-fullstack/blob/main/backend/README.md)
