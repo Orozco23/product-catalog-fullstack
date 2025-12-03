@@ -32,14 +32,9 @@ export default function Login() {
         try {
             const response = await auth(email, password);
             // Save user data to localStorage
-            localStorage.setItem('type', JSON.stringify(response.type));
+            localStorage.setItem('type', JSON.stringify(response.user.type));
             
-            // Navigate based on user type
-            if(response.user.type === 1 || response.user.type === 2) {
-                navigate('/product');
-            } else if (response.user.type === 3) {
-                navigate('/catalog'); 
-            }
+            navigate('/catalog'); 
             
         } catch (error) {
             console.error("Error during login:", error.message);
